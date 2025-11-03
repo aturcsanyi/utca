@@ -1,0 +1,21 @@
+# ignore files in the data folder
+data/*
+#except the current version
+#!data/epiteszek_irodak.xlsx
+#!data/epiteszek_irodak-edges.xlsx
+
+#don't track output files
+output/
+
+# ignore files in the resources folder
+# resources/
+
+# ignore cache
+cache/
+# ignore notebooks
+*.ipynb
+#except the final notebooks
+#!final.ipynb
+
+#
+__pycache__/
