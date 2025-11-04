@@ -452,23 +452,35 @@ def create_polygon(poly_edges: list, G: nx.Graph):
     return result[0]
 
 
-def poly_df(polygons, G, drop_outer=True):
+def poly_df(
+    G: nx.Graph,
+    polygons: list = None,
+    drop_outer: bool = True,
+    use_old_create_polygon: bool = False,
+):
     """Creates GeoDataFrame of polygons from edgelists
 
     Parameters
     ----------
-    polygons : list
-        List of polygons, each of which is a list of edges comprising the polygon.
     G : nx.Graph
         Street graph.
+    polygons : list, optional
+        List of polygons, each of which is a list of edges comprising the polygon. If not passed, it's computed internally.
     drop_outer : bool
-        Drop the outer polygon, which is also the largest. Default True.
+        Drop the outer polygon by finding the largest. Default True.
+    use_old_create_polygon : bool
+        Use the old, handwritten polygon creator instead of the new one with shapely. Default False.
 
     Returns
     -------
     gpd.GeoDataFrame
     """
-    geom = [create_polygon(poly, G) for poly in polygons]
+    if polygons is None:
+        polygons = polygonize(G)
+    if use_old_create_polygon:
+        geom = [create_polygon_old(poly, G) for poly in polygons]
+    else:
+        geom = [create_polygon(poly, G) for poly in polygons]
     crs = G.graph["crs"]
     if type(crs) is not str:
         crs = crs.srs
