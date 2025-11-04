@@ -411,6 +411,21 @@ def edge_coords(edge, G):
 
 
 def create_polygon_old(poly_edges: list, G: nx.Graph):
+    """Creates polygon geometry object from list of edges.
+    Not guaranteed to be a valid polygon, uses `shapely.Polygon` with a list of coordinates from the edges.
+
+    Parameters
+    ----------
+    poly_edges : list
+        List of edge id tuples comprising the polygon.
+    G : nx.Graph
+        Street graph.
+
+    Returns
+    -------
+    shapely.Polygon
+        Geometric polygon object.
+    """
     coord_list = []
     first = edge_coords(poly_edges[0], G)
     second = edge_coords(poly_edges[1], G)
@@ -431,7 +446,7 @@ def create_polygon_old(poly_edges: list, G: nx.Graph):
 
 
 def create_polygon(poly_edges: list, G: nx.Graph):
-    """Creates polygon geometry object from list of edges.
+    """Creates polygon geometry object from list of edges, using `shapely.polygonize`. If no geometry is created, then returns None.
 
     Parameters
     ----------
@@ -448,8 +463,11 @@ def create_polygon(poly_edges: list, G: nx.Graph):
     geom_list = [G.edges[edge]["geometry"] for edge in poly_edges]
     result = shapely.polygonize(geom_list).geoms
     if len(result) != 1:
-        print("Polygon error: multiple geometries")
-    return result[0]
+        print("Polygon error: multiple or no geometries")
+    if result:
+        return result[0]
+    else:
+        return None
 
 
 def poly_df(
@@ -488,7 +506,7 @@ def poly_df(
         data={
             "n_sides": [poly_n_sides(poly, G) for poly in polygons],
             "edges": [str(poly) for poly in polygons],
-            "area": [poly.area for poly in geom],
+            "area": [poly.area if poly else 0 for poly in geom],
         },
         geometry=geom,
         crs=crs,
