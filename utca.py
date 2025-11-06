@@ -560,7 +560,39 @@ def poly_df(
     return result
 
 
-def poly_angles(polygon: list, G: nx.Graph):
+def reverse_edge(edge: tuple[int, int, int]):
+    """Gives the index of an edge in the reverse direction."""
+    return (edge[1], edge[0], edge[2])
+
+
+def poly_angles(polygon: list, G: nx.Graph) -> list:
+    """Calculates the angles inside a polygon at the nodes.
+    (Using bearings so works also when dead ends have been pruned.)
+
+    Parameters
+    ----------
+    polygon : list
+        Edge sequence of a polygon.
+    G : nx.Graph
+        Street graph with `bearings` attribute at nodes.
+
+    Returns
+    -------
+    list
+        Angles in order around the polygon, for each edge the angle at the starting node.
+    """
+    result = []
+    for i in range(len(polygon)):
+        current_edge = polygon[i]
+        prev_edge = polygon[i - 1]
+        node_bearings = G.nodes[current_edge[0]]["bearings"]
+        result.append(
+            (node_bearings[current_edge] - node_bearings[reverse_edge(prev_edge)]) % 360
+        )
+    return result
+
+
+def poly_angles_old(polygon: list, G: nx.Graph):
     result = []
     for edge in polygon:
         start_node = edge[0]
