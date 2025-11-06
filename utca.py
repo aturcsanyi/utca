@@ -243,6 +243,64 @@ def fill_graph_attributes(G: nx.Graph):
     return G
 
 
+def apply_on_nodes(G: nx.Graph, func, attr_name: str):
+    """Creates list of node, attribute dict pair tuples, where the attribute is given by a function acting on a node.
+
+    Parameters
+    ----------
+    G : nx.Graph
+        Street graph.
+    func: callable
+        Function with signature (node, G).
+    attr_name: str
+        Key to use for the attribute.
+
+    Returns
+    -------
+    list
+        Node, attr dict pair tuples.
+    """
+    return [(node, {attr_name: func(node, G)}) for node in G]
+
+
+def prepare_graph(G: nx.Graph) -> nx.Graph:
+    """Prepares graph for use with the utca module.
+    Replaces `fill_graph_attributes`.
+    In order:
+    - converts to undirected,
+    - removes self-loops,
+    - adds bearings of adjacent edges as dict `bearings`,
+    - adds angle dicts for nodes `angles`,
+    - adds list of adjacent edges sorted by angle `adj_sorted`,
+    - adds node types `type`,
+    - adds node corner degrees `n_corners`.
+
+    Parameters
+    ----------
+    G : nx.Graph
+        Street graph
+
+    Returns
+    -------
+    nx.Graph
+        Street graph updated with node attributes.
+    """
+    G = ox.convert.to_undirected(G)
+    G.remove_edges_from(nx.selfloop_edges(G))
+
+    attributes = {
+        "bearings": intersection_bearings,
+        "angles": intersection_angles,
+        "adj_sorted": lambda x, g: list(intersection_angles(x, g).keys()),
+        "type": node_type,
+        "n_corners": node_n_corners,
+    }
+
+    for attr, func in attributes.items():
+        G.add_nodes_from(apply_on_nodes(G, func, attr))
+    return G
+
+
 def explore_graph(G, column_to_plot=None, polygons: gpd.GeoDataFrame = None):
     nodes, edges = ox.convert.graph_to_gdfs(G)
     if polygons is not None:
