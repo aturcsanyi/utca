@@ -232,7 +232,11 @@ def test_geom():
 
 
 def fill_graph_attributes(G: nx.Graph):
+    """Prepares graph for use with the utca module.
+    In order: converts to undirected, removes self-loops, adds angle dicts for nodes, adds node types, adds node corner degrees.
+    """
     G = ox.convert.to_undirected(G)
+    G.remove_edges_from(nx.selfloop_edges(G))
     G.add_nodes_from(angles_for_updating(G))
     G.add_nodes_from(node_types_list(G))
     G.add_nodes_from(node_n_corners_list(G))
@@ -470,11 +474,46 @@ def create_polygon(poly_edges: list, G: nx.Graph):
         return None
 
 
+def remove_dead_ends(poly_edges: list, full_output: bool = False):
+    """Removes dead ends inside polygons from the edge sequence.
+
+    Parameters
+    ----------
+    poly_edges : list
+        List of edge id tuples comprising the polygon.
+    full_output : bool, optional
+        If true, returns the removed edges alongside the polygon.
+
+    Returns
+    -------
+    list | (list, list) (ezt hogy kell?)
+        New edge sequence of polygon.
+    """
+    stack = []
+    cut_edges = []
+    for edge in poly_edges:
+        if stack and stack[-1] == (edge[1], edge[0], edge[2]):
+            cut_edges.append(stack.pop())
+            cut_edges.append(edge)
+        else:
+            stack.append(edge)
+    # one last check with the first element
+    if stack and stack[0] == (stack[-1][1], stack[-1][0], stack[-1][2]):
+        cut_edges.append(stack.pop())
+        cut_edges.append(stack[0])
+    # no need for else, its already in stack[0]
+    if full_output:
+        return stack, cut_edges
+    else:
+        return stack
+
+
 def poly_df(
     G: nx.Graph,
     polygons: list = None,
     drop_outer: bool = True,
     use_old_create_polygon: bool = False,
+    dont_count_dead_ends: bool = True,
 ):
     """Creates GeoDataFrame of polygons from edgelists
 
@@ -486,8 +525,10 @@ def poly_df(
         List of polygons, each of which is a list of edges comprising the polygon. If not passed, it's computed internally.
     drop_outer : bool
         Drop the outer polygon by finding the largest. Default True.
-    use_old_create_polygon : bool
+    use_old_create_polygon : bool, optional
         Use the old, handwritten polygon creator instead of the new one with shapely. Default False.
+    dont_count_dead_ends : bool, optional
+        Won't count dead ends when counting corner degree. Default True.
 
     Returns
     -------
@@ -495,6 +536,9 @@ def poly_df(
     """
     if polygons is None:
         polygons = polygonize(G)
+    if dont_count_dead_ends:
+        polygons = [remove_dead_ends(poly) for poly in polygons]
+        # maybe its better to remove at the n_sides calc step, so the angle at the cut edges can be calculated properly
     if use_old_create_polygon:
         geom = [create_polygon_old(poly, G) for poly in polygons]
     else:
@@ -522,6 +566,7 @@ def poly_angles(polygon: list, G: nx.Graph):
         start_node = edge[0]
         node_angles = G.nodes[start_node]["angles"]
         result.append(node_angles[edge])
+        # if the actual next one is cut, then add the two angles?
     return result
 
 
