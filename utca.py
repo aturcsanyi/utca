@@ -556,9 +556,9 @@ def remove_dead_ends(poly_edges: list, full_output: bool = False):
         else:
             stack.append(edge)
     # one last check with the first element
-    if stack and stack[0] == (stack[-1][1], stack[-1][0], stack[-1][2]):
-        cut_edges.append(stack.pop())
-        cut_edges.append(stack[0])
+    while stack and stack[0] == (stack[-1][1], stack[-1][0], stack[-1][2]):
+        cut_edges.append(stack.pop(-1))
+        cut_edges.append(stack.pop(0))
     # no need for else, its already in stack[0]
     if full_output:
         return stack, cut_edges
