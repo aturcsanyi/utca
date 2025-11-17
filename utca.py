@@ -734,3 +734,25 @@ def remove_roundabout(poly_df_row, G: nx.Graph, poly_edges: list) -> nx.Graph:
     if len(G2[idx]) == 2:
         G2 = _merge_2deg_node(idx, G2, ref=idx)
     return G2
+
+
+# graph stats
+
+
+def graph_stats(G: nx.Graph):
+    polygons = poly_df(G)
+    nodes = ox.convert.graph_to_gdfs(G, edges=False)
+    F = len(polygons)
+    V = len(nodes)
+    N_F = polygons["n_sides"].sum()
+    N_V = nodes["n_corners"].sum()
+    v = polygons["n_sides"].mean()
+    n = nodes["n_corners"].mean()
+    return {
+        "F": F,
+        "V": V,
+        "N_F": N_F,
+        "N_V": N_V,
+        "v": v,
+        "n": n,
+    }
