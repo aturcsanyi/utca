@@ -566,6 +566,14 @@ def remove_dead_ends(poly_edges: list, full_output: bool = False):
         return stack
 
 
+def is_roundabout(poly_edges, G):
+    """Returns true if all edges of a polygon are tagged as roundabout."""
+    junctions = [
+        G.edges[edge].get("junction") for edge in poly_edges
+    ]  # junction tag of edges
+    return all(junction == "roundabout" for junction in junctions)
+
+
 def poly_df(
     G: nx.Graph,
     polygons: list = None,
@@ -609,6 +617,7 @@ def poly_df(
             "n_sides": [poly_n_sides(poly, G) for poly in polygons],
             "edges": [str(poly) for poly in polygons],
             "area": [poly.area if poly else 0 for poly in geom],
+            "roundabout": [is_roundabout(poly, G) for poly in polygons],
         },
         geometry=geom,
         crs=crs,
@@ -667,3 +676,61 @@ def poly_n_sides(polygon: list, G: nx.Graph):
         if np.abs(180 - angle) >= params.tolerance_180:
             n_sides += 1
     return n_sides
+
+
+# roundabout removal
+
+
+def _merge_2deg_node(node, G: nx.Graph, ref=None):
+    G2 = G.copy()
+    edges = list(G2.edges(node, data=True))
+    geom_list = []
+    for edge in edges:
+        if edge[2].get("geometry") is None:
+            node_xy = (G.nodes[node]["x"], G.nodes[node]["y"])
+            other_xy = (G.nodes[edge[1]]["x"], G.nodes[edge[1]]["y"])
+            geom_list.append(shapely.LineString([node_xy, other_xy]))
+        else:
+            geom_list.append(edge[2]["geometry"])
+    # add new edge (result of merge)
+    geom = shapely.line_merge(shapely.MultiLineString(geom_list))
+    G2.add_edge(edges[0][1], edges[1][1], geometry=geom, osmid=f"node_{node}", ref=ref)
+    G2.remove_node(node)  # also removes old edges
+    return G2
+
+
+def remove_roundabout(poly_df_row, G: nx.Graph, poly_edges: list) -> nx.Graph:
+    idx = f"rab_{poly_df_row['index']}"
+    geom = poly_df_row["geometry"]
+    G2 = G.copy()
+    # new node at center
+    centroid = geom.centroid
+    G2.add_node(
+        idx, roundabout=True, geometry=geom.centroid, x=centroid.x, y=centroid.y
+    )
+    # nodes of the roundabout
+    rab_nodes = set()
+    for edge in poly_edges:
+        rab_nodes.add(edge[0])
+        rab_nodes.add(edge[1])
+    # delete old rab edges
+    G2.remove_edges_from(poly_edges)
+    # new edges to the center
+    new_edges = []
+    rab_adj_nodes = set()
+    for node in rab_nodes:
+        for adj in G2[node]:
+            if adj not in rab_adj_nodes:
+                rab_adj_nodes.add(adj)
+                new_edges.append((idx, adj, {"osmid": f"{idx}_{node}"}))
+    G2.add_edges_from(new_edges)
+    # remove old rab nodes
+    G2.remove_nodes_from(rab_nodes)
+    # remove deg2 rab adj nodes
+    for node in rab_adj_nodes:
+        if len(G2[node]) == 2:
+            G2 = _merge_2deg_node(node, G2, ref=idx)
+    # check if rab node is deg 2
+    if len(G2[idx]) == 2:
+        G2 = _merge_2deg_node(idx, G2, ref=idx)
+    return G2
