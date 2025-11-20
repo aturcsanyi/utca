@@ -301,11 +301,18 @@ def prepare_graph(G: nx.Graph) -> nx.Graph:
     return G
 
 
-def explore_graph(G, column_to_plot=None, polygons: gpd.GeoDataFrame = None):
+def explore_graph(
+    G,
+    polygons: gpd.GeoDataFrame = None,
+    node_column_to_plot=None,
+    edge_column_to_plot=None,
+    poly_column_to_plot=None,
+):
     nodes, edges = ox.convert.graph_to_gdfs(G)
     if polygons is not None:
         m = polygons.explore(
             name="Polygons",
+            column=poly_column_to_plot,
             tiles="CartoDB positron",
             highlight_kwds={"color": "red"},
             popup=True,
@@ -316,6 +323,7 @@ def explore_graph(G, column_to_plot=None, polygons: gpd.GeoDataFrame = None):
     m = edges.explore(
         m=m,
         name="Edges",
+        column=edge_column_to_plot,
         tiles="CartoDB positron",
         highlight_kwds={"color": "red"},
         popup=True,
@@ -323,7 +331,7 @@ def explore_graph(G, column_to_plot=None, polygons: gpd.GeoDataFrame = None):
     )
     nodes.explore(
         name="Nodes",
-        column=column_to_plot,
+        column=node_column_to_plot,
         m=m,
         tiles="CartoDB positron",
         highlight_kwds={"color": "red"},
@@ -720,7 +728,7 @@ def remove_roundabout(poly_df_row, G: nx.Graph, poly_edges: list) -> nx.Graph:
     rab_adj_nodes = set()
     for node in rab_nodes:
         for adj in G2[node]:
-            if adj not in rab_adj_nodes:
+            if adj not in rab_adj_nodes and adj not in rab_nodes:
                 rab_adj_nodes.add(adj)
                 new_edges.append((idx, adj, {"osmid": f"{idx}_{node}"}))
     G2.add_edges_from(new_edges)
