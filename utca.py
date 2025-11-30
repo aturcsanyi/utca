@@ -12,6 +12,7 @@ import shapely
 import osmnx as ox
 import matplotlib.pyplot as plt
 import folium
+import neatnet
 
 
 # Global parameters
@@ -19,6 +20,7 @@ class Parameters:
     def __init__(self):
         self.tolerance_180 = 15
         self.tolerance_x = 15
+        self.crs = "EPSG:3035"
 
 
 params = Parameters()
@@ -699,12 +701,20 @@ def _merge_2deg_node(node, G: nx.Graph, ref=None):
             other_xy = (G.nodes[edge[1]]["x"], G.nodes[edge[1]]["y"])
             geom_list.append(shapely.LineString([node_xy, other_xy]))
         else:
-            geom_list.append(edge[2]["geometry"])
+            geom_list.append(edge[2]["geometry"])  # ez biztos jo?
     # add new edge (result of merge)
     geom = shapely.line_merge(shapely.MultiLineString(geom_list))
     G2.add_edge(edges[0][1], edges[1][1], geometry=geom, osmid=f"node_{node}", ref=ref)
     G2.remove_node(node)  # also removes old edges
     return G2
+
+
+def node_distance(idx1, idx2, G):
+    x1 = G.nodes[idx1]["x"]
+    y1 = G.nodes[idx1]["y"]
+    x2 = G.nodes[idx2]["x"]
+    y2 = G.nodes[idx2]["y"]
+    return np.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
 
 
 def remove_roundabout(poly_df_row, G: nx.Graph, poly_edges: list) -> nx.Graph:
@@ -730,7 +740,11 @@ def remove_roundabout(poly_df_row, G: nx.Graph, poly_edges: list) -> nx.Graph:
         for adj in G2[node]:
             if adj not in rab_adj_nodes and adj not in rab_nodes:
                 rab_adj_nodes.add(adj)
-                new_edges.append((idx, adj, {"osmid": f"{idx}_{node}"}))
+                # calculate length
+                length = node_distance(idx, adj, G2)
+                new_edges.append(
+                    (idx, adj, {"osmid": f"{idx}_{node}", "length": length})
+                )
     G2.add_edges_from(new_edges)
     # remove old rab nodes
     G2.remove_nodes_from(rab_nodes)
@@ -764,3 +778,35 @@ def graph_stats(G: nx.Graph):
         "v": v,
         "n": n,
     }
+
+
+def rebuild_neat_graph(
+    neat_streets: gpd.GeoDataFrame,
+) -> tuple[gpd.GeoDataFrame, gpd.GeoDataFrame]:
+    """Creates the nodes, edges geodataframes expected by osmnx from the output of neatnet.neatify."""
+    nodes_arr = neatnet.nodes._nodes_from_edges(neat_streets.geometry)
+    nodes = gpd.GeoDataFrame(geometry=nodes_arr, crs=params.crs)
+
+    from_points = gpd.GeoDataFrame(
+        geometry=neat_streets["geometry"].apply(shapely.get_point, args=(0,)),
+        crs=params.crs,
+    )  # shape of streets
+    to_points = gpd.GeoDataFrame(
+        neat_streets["geometry"].apply(shapely.get_point, args=(-1,)), crs=params.crs
+    )
+    joined_from = from_points.sjoin(nodes, how="left")
+    joined_to = to_points.sjoin(nodes, how="left")
+
+    edges = neat_streets.copy()
+    edges["from"] = joined_from["index_right"]
+    edges["to"] = joined_to["index_right"]
+    edges["_key"] = edges.groupby(["from", "to"]).cumcount()
+    idx = pd.MultiIndex.from_frame(
+        df=edges[["from", "to", "_key"]], sortorder=0, names=["u", "v", "key"]
+    )
+    edges.index = idx
+
+    nodes.index.name = "osmid"
+    nodes["x"] = nodes.geometry.x
+    nodes["y"] = nodes.geometry.y
+    return nodes, edges
