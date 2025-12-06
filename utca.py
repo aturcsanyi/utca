@@ -810,3 +810,27 @@ def rebuild_neat_graph(
     nodes["x"] = nodes.geometry.x
     nodes["y"] = nodes.geometry.y
     return nodes, edges
+
+
+# population
+def load_population(path="data/pop.dat"):
+    """Loads population dataframe from `pop.dat`"""
+    cols = [
+        "cityname",
+        1870,
+        1880,
+        1890,
+        1900,
+        1910,
+        1920,
+        1930,
+        1941,
+        1949,
+        1960,
+        1970,
+        1980,
+        1990,
+        2001,
+        2011,
+    ]
+    return pd.read_csv(path, sep=" ", names=cols, index_col="cityname")
