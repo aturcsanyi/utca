@@ -349,10 +349,18 @@ def explore_graph(
 
 
 def t_intersection(angles_list):
-    for i in angles_list:
-        if np.abs(180 - i) <= params.tolerance_180:
+    if np.abs(max(angles_list) - 180) <= params.tolerance_180 / 2:
+        if min(angles_list) >= 90 - params.tolerance_180 * 2:
             return True
-    return False
+        else:
+            return False
+    elif np.abs(max(angles_list) - 180) <= params.tolerance_180:
+        if min(angles_list) >= 90 - params.tolerance_180:
+            return True
+        else:
+            return False
+    else:
+        return False
 
 
 def x_intersection(angles_list):
@@ -368,13 +376,15 @@ def node_type(node_id, G):
     if degree == 3:
         if t_intersection(angles):
             return "T"
+        elif max(angles) > 180 + params.tolerance_180:
+            return "other"
         return "Y"
     elif degree == 4:
         if x_intersection(angles):
             return "X"
-        elif t_intersection(angles):
-            return "K"
-        return "negyes"
+        # elif t_intersection(angles):
+        #    return "K"
+        return "other"
     else:
         return "other"
 
