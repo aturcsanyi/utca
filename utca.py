@@ -761,8 +761,11 @@ def remove_roundabout(poly_df_row, G: nx.Graph, poly_edges: list) -> nx.Graph:
 # graph stats
 
 
-def graph_stats(G: nx.Graph):
+def graph_stats(G, threshold=True):
     polygons = poly_df(G)
+    if threshold:
+        threshold = polygons["area"].quantile(0.99)
+        polygons = polygons[polygons["area"] < threshold]
     nodes = ox.convert.graph_to_gdfs(G, edges=False)
     F = len(polygons)
     V = len(nodes)
