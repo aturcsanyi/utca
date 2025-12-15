@@ -771,12 +771,14 @@ def remove_roundabout(poly_df_row, G: nx.Graph, poly_edges: list) -> nx.Graph:
 # graph stats
 
 
-def graph_stats(G, threshold=True):
+def graph_stats(G, threshold=True, no_deg1_nodes=True):
     polygons = poly_df(G)
     if threshold:
         threshold = polygons["area"].quantile(0.99)
         polygons = polygons[polygons["area"] < threshold]
     nodes = ox.convert.graph_to_gdfs(G, edges=False)
+    if no_deg1_nodes:
+        nodes = nodes[nodes["n_corners"] > 1]
     F = len(polygons)
     V = len(nodes)
     N_F = polygons["n_sides"].sum()
