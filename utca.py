@@ -780,7 +780,7 @@ def remove_all_roundabouts(G):
 # graph stats
 
 
-def graph_stats(G, threshold=True, no_deg1_nodes=True):
+def graph_stats(G, threshold=True, no_deg1_nodes=True) -> dict:
     polygons = poly_df(G)
     if threshold:
         threshold = polygons["area"].quantile(0.99)
@@ -794,7 +794,8 @@ def graph_stats(G, threshold=True, no_deg1_nodes=True):
     N_V = nodes["n_corners"].sum()
     v = polygons["n_sides"].mean()
     n = nodes["n_corners"].mean()
-    return {
+    types = {key: value for key, value in nodes["type"].value_counts().items()}
+    result = {
         "F": F,
         "V": V,
         "N_F": N_F,
@@ -802,6 +803,8 @@ def graph_stats(G, threshold=True, no_deg1_nodes=True):
         "v": v,
         "n": n,
     }
+    result.update(types)
+    return result
 
 
 def rebuild_neat_graph(
