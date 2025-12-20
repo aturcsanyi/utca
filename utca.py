@@ -28,16 +28,13 @@ params = Parameters()
 # Old approach for historical data
 
 
-def load_streets(kerulet=None, streets=None):
+def load_streets(kerulet=None, cityname=None, query=None, streets=None):
     """load streets from csv"""
     if kerulet is not None:
         query = f"cityname='Budapest {kerulet}. kerület'"
-        gdf = gpd.read_file(
-            "data/street_hist.csv",
-            where=f"cityname='Budapest {kerulet}. kerület'",
-        )
-    else:
-        gdf = gpd.read_file("data/street_hist.csv")
+    if cityname is not None:
+        query = f"cityname='{cityname}'"
+    gdf = gpd.read_file("data/street_hist.csv", where=query)
     if streets is not None:
         gdf = gdf[gdf["id"].isin(streets)]
     from_date_na = "1800-01-01"
