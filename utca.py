@@ -562,8 +562,9 @@ def create_polygon(poly_edges: list, G: nx.Graph):
     """
     geom_list = [G.edges[edge]["geometry"] for edge in poly_edges]
     result = shapely.polygonize(geom_list).geoms
-    if len(result) != 1:
-        print(f"Polygon warning: {len(result)} geometries")
+    # TODO implement logging
+    # if len(result) != 1:
+    # print(f"Polygon warning: {len(result)} geometries")
     if result:
         return max(result, key=lambda g: g.area)
     else:
