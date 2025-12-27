@@ -29,7 +29,24 @@ params = Parameters()
 
 
 def load_streets(kerulet=None, cityname=None, query=None, streets=None):
-    """load streets from csv"""
+    """Load streets gdf from historical data csv
+
+    Parameters
+    ----------
+    kerulet : str
+        District of Budapest with roman numerals, eg `XI`
+    cityname : str
+        Name of city in the dataset, eg `Szentendre`
+    query : str
+        Passed to `gpd.read_file(where=)`, filters the data loading
+    streets : list
+        List of street ids to filter to
+
+    Returns
+    -------
+    gpd.GeoDataFrame
+        gdf of streets with historical data
+    """
     if kerulet is not None:
         query = f"cityname='Budapest {kerulet}. kerület'"
     if cityname is not None:
@@ -59,6 +76,9 @@ def load_streets(kerulet=None, cityname=None, query=None, streets=None):
     grouped["geometry"] = geom_series
     grouped["geom_type"] = geom_series.geom_type
     grouped = gpd.GeoDataFrame(grouped, crs="EPSG:4326")
+    grouped = grouped[
+        ~grouped.geom_type.isin(["Polygon", "MultiPolygon", "GeometryCollection"])
+    ]
     return grouped
 
 
@@ -284,7 +304,8 @@ def prepare_graph(G: nx.Graph) -> nx.Graph:
     nx.Graph
         Street graph updated with node attributes.
     """
-    G = ox.convert.to_undirected(G)
+    if isinstance(G, nx.DiGraph):
+        G = ox.convert.to_undirected(G)
     G.remove_edges_from(nx.selfloop_edges(G))
 
     attributes = {
@@ -828,6 +849,7 @@ def rebuild_neat_graph(
     idx = pd.MultiIndex.from_frame(
         df=edges[["from", "to", "_key"]], sortorder=0, names=["u", "v", "key"]
     )
+    edges["osmid"] = range(len(edges))
     edges.index = idx
 
     nodes.index.name = "osmid"
