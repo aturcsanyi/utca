@@ -13,6 +13,7 @@ import osmnx as ox
 import matplotlib.pyplot as plt
 import folium
 import neatnet
+from tqdm import tqdm
 
 
 # Global parameters
@@ -881,3 +882,45 @@ def load_population(path="data/pop.dat"):
         2011,
     ]
     return pd.read_csv(path, sep=" ", names=cols, index_col="cityname")
+
+
+# Radial model
+def get_radial_timeline(gdf, center: shapely.Point, max_iter=20, step_size=1000):
+    """
+    Returns series of graph stats of increasing circular sections around a center.
+
+    Parameters
+    ----------
+    gdf: gpd.GeoDataFrame
+        Edges dataframe from a street graph
+    center: shapely.Point
+        (lat, lon) point of the city center (osm admin_centre)
+    max_iter: int
+        Number of iterations to step from center. Default 21
+    step_size: int
+        Step size in meters for the iteration with the concentric circles. Default 1000
+
+    Returns
+    -------
+    pd.DataFrame
+        Dataframe containing the graph stats for all radiuses
+    """
+    point_gdf = gpd.GeoDataFrame(geometry=[center], crs="EPSG:4326")
+    point_gdf_proj = point_gdf.to_crs(params.crs)
+    results = []
+    for i in tqdm(range(1, max_iter), desc="Increasing radius", ascii=True):
+        distance = step_size * i
+        buffer = point_gdf_proj.buffer(distance)
+        filtered = gdf[gdf.intersects(buffer.iloc[0])]
+        _G = ox.graph_from_gdfs(*rebuild_neat_graph(filtered))
+        _G = prepare_graph(_G)
+        # if not nx.is_connected(_G):
+        largest_cc = max(nx.connected_components(_G), key=len)
+        _G = _G.subgraph(largest_cc).copy()
+        stats = graph_stats(_G)
+        # stats.update({'cityname': town})
+        stats.update({"radius_meters": distance})
+        if len(results) >= 1 and stats["V"] == results[-1]["V"]:
+            break
+        results.append(stats)
+    return pd.DataFrame(results)
