@@ -791,8 +791,14 @@ def remove_roundabout(poly_df_row, G: nx.Graph, poly_edges: list) -> nx.Graph:
 def remove_all_roundabouts(G):
     poly_sequence = polygonize(G)
     polygons = poly_df(G, poly_sequence)
+    if len(polygons["roundabout"]) == 0:
+        return G
     for idx, poly in polygons[polygons["roundabout"]].iterrows():
         G = remove_roundabout(poly, G, poly_sequence[idx])
+    G = prepare_graph(G)
+    streets = ox.graph_to_gdfs(G, node_geometry=False, nodes=False, edges=True)
+    nodes, edges = rebuild_neat_graph(streets)
+    G = ox.graph_from_gdfs(nodes, edges)
     G = prepare_graph(G)
     return G
 
