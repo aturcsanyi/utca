@@ -97,11 +97,11 @@ def join_historical_streets(
     if hist_cache is not None:
         historical = hist_cache
     else:
-        historical = utca.load_streets(query="cityname LIKE 'Budapest%'")
-        historical = historical.drop(
-            axis=1, labels=["to_date", "cityid", "cityname", "geom", "geom_type"]
-        )
-        historical = historical.to_crs(utca.params.crs)
+        historical = load_streets(query="cityname LIKE 'Budapest%'")
+    historical = historical.drop(
+        axis=1, labels=["to_date", "cityid", "cityname", "geom", "geom_type"]
+    )
+    historical = historical.to_crs(params.crs)
 
     joined = gpd.sjoin(
         edges,
