@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import folium
 import neatnet
 from tqdm import tqdm
+import datetime
 
 
 # Global parameters
@@ -81,6 +82,39 @@ def load_streets(kerulet=None, cityname=None, query=None, streets=None):
         ~grouped.geom_type.isin(["Polygon", "MultiPolygon", "GeometryCollection"])
     ]
     return grouped
+
+
+def join_historical_streets(
+    edges: gpd.GeoDataFrame, hist_cache: gpd.GeoDataFrame = None
+):
+    """
+    Returns edges df joined with historical data (for districts of Budapest)
+    """
+    edges["utca"] = edges["name"].apply(
+        lambda x: x[0] if isinstance(x, list) and len(x) > 0 else x
+    )
+
+    if hist_cache is not None:
+        historical = hist_cache
+    else:
+        historical = utca.load_streets(query="cityname LIKE 'Budapest%'")
+        historical = historical.drop(
+            axis=1, labels=["to_date", "cityid", "cityname", "geom", "geom_type"]
+        )
+        historical = historical.to_crs(utca.params.crs)
+
+    joined = gpd.sjoin(
+        edges,
+        historical,
+        how="left",
+        on_attribute="utca",
+        predicate="dwithin",
+        distance=10,
+    )
+    joined["date"] = pd.to_datetime(joined["from_date"], format="%Y-%m-%d")
+    joined["date"] = joined["date"].fillna(datetime.datetime(1800, 1, 1))
+
+    return joined
 
 
 def basic_visu(gdf: gpd.GeoDataFrame, m=None, column=None):
