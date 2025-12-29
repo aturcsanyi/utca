@@ -964,3 +964,31 @@ def get_radial_timeline(gdf, center: shapely.Point, max_iter=20, step_size=1000)
             break
         results.append(stats)
     return pd.DataFrame(results)
+
+
+# Historical timeline
+def get_timeline(df, handle_connected=True):
+    """
+    Returns dataframe of graph stats from the historical timeline
+
+    Parameters
+    ----------
+    df:
+        streets/edges dataframe with `date` column in pd datetime format
+    """
+    results = []
+
+    for year in tqdm(range(1880, 2026, 5), desc="year", ascii=True):
+        date = datetime.datetime(year, 1, 1)
+        filtered_df = df[df["date"] < date]
+        # print(f"Year {year}: {len(filtered_df)} entries")
+        _G = ox.graph_from_gdfs(*rebuild_neat_graph(filtered_df))
+        _G = prepare_graph(_G)
+        if handle_connected:
+            largest_cc = max(nx.connected_components(_G), key=len)
+            _G = _G.subgraph(largest_cc).copy()
+        stats = graph_stats(_G)
+        # stats.update({'cityname': town})
+        stats.update({"year": year})
+        results.append(stats)
+    return pd.DataFrame(results)
