@@ -5,6 +5,7 @@ from pathlib import Path
 from tqdm import tqdm
 import traceback
 import datetime
+import networkx as nx
 
 
 def process_town(path: Path, output_path: Path, dry_run=False):
@@ -14,8 +15,20 @@ def process_town(path: Path, output_path: Path, dry_run=False):
     G = ox.project_graph(G, to_crs=utca.params.crs)
     streets = ox.graph_to_gdfs(G, node_geometry=False, nodes=False, edges=True)
     neat = neatnet.neatify(streets)
+    neat["length"] = neat.geometry.length
+    nodes, edges = utca.rebuild_neat_graph(neat)
+    G = ox.graph_from_gdfs(nodes, edges)
+    G = G.to_undirected()
+    G = utca.prepare_graph(G)
+    # ! largest cc ----
+    largest_cc = max(nx.connected_components(G), key=len)
+    G = G.subgraph(largest_cc).copy()
+    # ! -----
+    G = utca.remove_all_roundabouts(G)
+    G = utca.prepare_graph(G)
     if not dry_run:
-        neat.to_file(output_path / f"{cityname}.geojson", driver="GeoJSON")
+        # neat.to_file(output_path / f'{cityname}.geojson', driver='GeoJSON')
+        ox.save_graphml(G, output_path / f"{cityname}_simplified.graphml")
 
 
 batch_id = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
