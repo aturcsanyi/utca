@@ -23,6 +23,17 @@ class Parameters:
         self.tolerance_180 = 15
         self.tolerance_x = 15
         self.crs = "EPSG:3035"
+        self.filter = (
+            '["highway"]["area"!~"yes"]["access"!~"private"]'
+            '["highway"!~"abandoned|bridleway|bus_guideway|construction|corridor|'
+            #'cycleway|elevator|escalator|footway|no|path|pedestrian|planned|platform|' # no pedestrian
+            "cycleway|elevator|escalator|footway|no|path|planned|platform|"  # yes pedestrian
+            "proposed|raceway|razed|rest_area|service|services|steps|track|"  # no services
+            #'proposed|raceway|razed|rest_area|services|steps|track|' # yes services
+            'motorway|motorway_link|trunk|trunk_link|primary_link|secondary_link"]'
+            #'["motor_vehicle"!~"no"]["motorcar"!~"no"]' # no car
+            '["service"!~"alley|driveway|emergency_access|parking|parking_aisle|private"]'
+        )
 
 
 params = Parameters()
