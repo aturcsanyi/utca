@@ -851,11 +851,19 @@ def remove_all_roundabouts(G):
 # graph stats
 
 
-def graph_stats(G, threshold=True, no_deg1_nodes=True) -> dict:
+def graph_stats(G, threshold='constant', no_deg1_nodes=True) -> dict:
+    """
+    thresholding:
+    - constant: fixed value of 100000 for value
+    - quantile: get value as the 99th percentile by area
+    """
     polygons = poly_df(G)
-    if threshold:
-        threshold = polygons["area"].quantile(0.99)
-        polygons = polygons[polygons["area"] < threshold]
+    if threshold == 'constant':
+        threshold_value = 100000 # m**2
+        polygons = polygons[polygons["area"] < threshold_value]
+    elif threshold == 'quantile':
+        threshold_value = polygons["area"].quantile(0.99)
+        polygons = polygons[polygons["area"] < threshold_value]
     nodes = ox.convert.graph_to_gdfs(G, edges=False)
     if no_deg1_nodes:
         nodes = nodes[nodes["n_corners"] > 1]
