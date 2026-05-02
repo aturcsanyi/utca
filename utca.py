@@ -15,6 +15,7 @@ import folium
 import neatnet
 from tqdm import tqdm
 import datetime
+from pathlib import Path
 
 
 # Global parameters
@@ -851,17 +852,17 @@ def remove_all_roundabouts(G):
 # graph stats
 
 
-def graph_stats(G, threshold='constant', no_deg1_nodes=True) -> dict:
+def graph_stats(G, threshold="constant", no_deg1_nodes=True) -> dict:
     """
     thresholding:
     - constant: fixed value of 100000 for value
     - quantile: get value as the 99th percentile by area
     """
     polygons = poly_df(G)
-    if threshold == 'constant':
-        threshold_value = 100000 # m**2
+    if threshold == "constant":
+        threshold_value = 100000  # m**2
         polygons = polygons[polygons["area"] < threshold_value]
-    elif threshold == 'quantile':
+    elif threshold == "quantile":
         threshold_value = polygons["area"].quantile(0.99)
         polygons = polygons[polygons["area"] < threshold_value]
     nodes = ox.convert.graph_to_gdfs(G, edges=False)
@@ -919,7 +920,104 @@ def rebuild_neat_graph(
     return nodes, edges
 
 
+# elevation
+
+
+def add_max_elevation_diff(G: nx.Graph) -> nx.Graph:
+    """
+    Adds to every node the maximum elevation difference compared to neighbors.
+    Needs elevation data added to nodes.
+
+    :param G: Street network graph with elevation data
+    :type G: nx.Graph
+    :return: Street graph with `max_elev_diff` data added to nodes
+    :rtype: Graph
+    """
+    for node in G.nodes():
+        node_elev = G.nodes[node].get("elevation")
+        if node_elev is None:
+            G.nodes[node]["max_elev_diff"] = None
+            continue
+
+        neighbor_elevs = [
+            G.nodes[neighbor].get("elevation") for neighbor in G.neighbors(node)
+        ]
+        neighbor_elevs = [e for e in neighbor_elevs if e is not None]
+
+        if neighbor_elevs:
+            G.nodes[node]["max_elev_diff"] = max(
+                abs(node_elev - e) for e in neighbor_elevs
+            )
+        else:
+            G.nodes[node]["max_elev_diff"] = None
+
+    return G
+
+
+def add_max_grade(G: nx.Graph) -> nx.Graph:
+    """
+    Adds to every node the maximum grade of the streets connecting at the node.
+    Needs elevation data added to nodes.
+
+    :param G: Street network graph with elevation data
+    :type G: nx.Graph
+    :return: Street graph with `max_grade` data added to nodes
+    :rtype: Graph
+    """
+    for node in G.nodes():
+        connected_edges = G.edges(node, keys=True, data=True)
+        grades = [
+            data.get("grade_abs")
+            for u, v, k, data in connected_edges
+            if data.get("grade_abs") is not None
+        ]
+
+        if grades:
+            G.nodes[node]["max_grade"] = max(grades)
+        else:
+            G.nodes[node]["max_grade"] = None
+    return G
+
+
+def process_town_elev(cityname: str, folder: Path, elevation_path) -> nx.Graph:
+    """
+    Process city street graph to have elevation metrics for nodes and edges
+
+    :param cityname: Name of city to process
+    :param folder: Path to folder containing saved simplified city street graphs in graphml format
+    :param elevation_path: Path to relevant DEM `.tif` file for elevation data
+    :return: City street graph with elevation metrics added to nodes and edges
+    :rtype: Graph
+    """
+    # streets = gpd.read_file(folder / f'{cityname}.geojson')
+    # path_str = f'output/neat_20260103_171612/{cityname}_simplified.graphml'
+    path_str = folder / f"{cityname}_simplified.graphml"
+    G = ox.load_graphml(path_str)
+    G = prepare_graph(G)
+
+    elev = ox.add_node_elevations_raster(G, elevation_path, band=1)
+    elev = ox.add_edge_grades(elev)
+    elev = add_max_elevation_diff(elev)
+    elev = add_max_grade(elev)
+    return elev
+
+
+def town_elev_deviation(cityname, graphs_folder, elevation_path):
+    """
+    Calculate the standard deviation of node elevations for a given city
+
+    :param cityname: The name of the city
+    :return: The numeric value of the standard deviation
+    :rtype: float
+    """
+    elev = process_town_elev(cityname, graphs_folder, elevation_path)
+    nodes = ox.convert.graph_to_gdfs(elev, edges=False)
+    return nodes["elevation"].std()
+
+
 # population
+
+
 def load_population(path="data/pop.dat"):
     """Loads population dataframe from `pop.dat`"""
     cols = [
@@ -944,6 +1042,8 @@ def load_population(path="data/pop.dat"):
 
 
 # Radial model
+
+
 def get_radial_timeline(gdf, center: shapely.Point, max_iter=20, step_size=1000):
     """
     Returns series of graph stats of increasing circular sections around a center.
@@ -986,6 +1086,8 @@ def get_radial_timeline(gdf, center: shapely.Point, max_iter=20, step_size=1000)
 
 
 # Historical timeline
+
+
 def get_timeline(df, handle_connected=True):
     """
     Returns dataframe of graph stats from the historical timeline
