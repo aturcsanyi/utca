@@ -8,7 +8,7 @@ from pathlib import Path
 pop = utca.load_population()
 towns = pop[pop[2011] > 2000].index.to_list()
 
-folder = Path("output/neat_20251207_001303")
+folder = Path("output/neat_20260103_171612")
 elevation_path = [f"data/GEO/eu_dem_v11_E{x}0N20.tif" for x in [4, 5]]
 
 results = []
