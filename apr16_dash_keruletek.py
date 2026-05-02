@@ -12,7 +12,7 @@ from dash_extensions.javascript import assign
 APP_TITLE = "District Stats: Scatter + Ternary + GeoJSON Map"
 
 STATS_PATH = Path("output/keruletek_stats_apr16.csv")
-GEOJSON_DIR = Path("output/keruletek_geojson_apr17")
+GEOJSON_DIR = Path("output/keruletek_geojson_apr19")
 
 GEOJSON_BASE_STYLE = {
     "color": "#2b8cbe",
