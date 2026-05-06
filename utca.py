@@ -376,6 +376,9 @@ def explore_graph(
     poly_column_to_plot=None,
 ):
     nodes, edges = ox.convert.graph_to_gdfs(G)
+    if edge_column_to_plot == "date":  # for correct coloring by date
+        edges["date_num"] = edges["date"].astype("int64")
+        edge_column_to_plot = "date_num"
     if polygons is not None:
         m = polygons.explore(
             name="Polygons",
