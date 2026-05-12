@@ -125,6 +125,10 @@ def join_historical_streets(
     )
     joined["date"] = pd.to_datetime(joined["from_date"], format="%Y-%m-%d")
     joined["date"] = joined["date"].fillna(datetime.datetime(1800, 1, 1))
+    joined["year"] = (
+        joined["from_date"].str.split(pat="-", n=1, expand=True)[0].astype(float)
+    )
+    joined["year"] = joined["year"].fillna(1800).astype(int)
 
     return joined
 
