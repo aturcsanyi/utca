@@ -68,7 +68,7 @@ def load_streets(kerulet=None, cityname=None, query=None, streets=None):
     gdf = gpd.read_file("data/street_hist.csv", where=query)
     if streets is not None:
         gdf = gdf[gdf["id"].isin(streets)]
-    from_date_na = "1800-01-01"
+    from_date_na = "1000-01-01"
     to_date_na = "3000-01-01"
     gdf.replace(
         to_replace="",
@@ -86,6 +86,7 @@ def load_streets(kerulet=None, cityname=None, query=None, streets=None):
             "geom": "last",
         }
     )
+    grouped.replace(to_replace="1000-01-01", value={"from_date": np.nan}, inplace=True)
     geom_series = gpd.GeoSeries.from_wkb(grouped["geom"])
     grouped["geometry"] = geom_series
     grouped["geom_type"] = geom_series.geom_type
@@ -97,7 +98,7 @@ def load_streets(kerulet=None, cityname=None, query=None, streets=None):
 
 
 def join_historical_streets(
-    edges: gpd.GeoDataFrame, hist_cache: gpd.GeoDataFrame = None
+    edges: gpd.GeoDataFrame, hist_cache: gpd.GeoDataFrame = None, fill_na=False
 ):
     """
     Returns edges df joined with historical data (for districts of Budapest)
@@ -124,11 +125,13 @@ def join_historical_streets(
         distance=10,
     )
     joined["date"] = pd.to_datetime(joined["from_date"], format="%Y-%m-%d")
-    joined["date"] = joined["date"].fillna(datetime.datetime(1800, 1, 1))
+    if fill_na:
+        joined["date"] = joined["date"].fillna(datetime.datetime(1800, 1, 1))
     joined["year"] = (
         joined["from_date"].str.split(pat="-", n=1, expand=True)[0].astype(float)
     )
-    joined["year"] = joined["year"].fillna(1800).astype(int)
+    if fill_na:
+        joined["year"] = joined["year"].fillna(1800).astype(int)
 
     return joined
 
@@ -142,7 +145,7 @@ def basic_visu(gdf: gpd.GeoDataFrame, m=None, column=None):
         cmap="viridis",
         popup=6,
         tooltip=6,
-        missing_kwds={"color": "k"},
+        missing_kwds={"color": "grey"},
     )
 
 
@@ -402,6 +405,7 @@ def explore_graph(
         highlight_kwds={"color": "red"},
         popup=True,
         style_kwds={"opacity": 0.6, "weight": 5},
+        missing_kwds={"color": "grey"},
     )
     nodes.explore(
         name="Nodes",
