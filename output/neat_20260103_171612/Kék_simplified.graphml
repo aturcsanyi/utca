@@ -1,0 +1,797 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d22" for="edge" attr.name="_key" attr.type="string" />
+  <key id="d21" for="edge" attr.name="_status" attr.type="string" />
+  <key id="d20" for="edge" attr.name="bridge" attr.type="string" />
+  <key id="d19" for="edge" attr.name="ref" attr.type="string" />
+  <key id="d18" for="edge" attr.name="maxspeed" attr.type="string" />
+  <key id="d17" for="edge" attr.name="lanes" attr.type="string" />
+  <key id="d16" for="edge" attr.name="to" attr.type="string" />
+  <key id="d15" for="edge" attr.name="from" attr.type="string" />
+  <key id="d14" for="edge" attr.name="length" attr.type="string" />
+  <key id="d13" for="edge" attr.name="reversed" attr.type="string" />
+  <key id="d12" for="edge" attr.name="oneway" attr.type="string" />
+  <key id="d11" for="edge" attr.name="name" attr.type="string" />
+  <key id="d10" for="edge" attr.name="highway" attr.type="string" />
+  <key id="d9" for="edge" attr.name="osmid" attr.type="string" />
+  <key id="d8" for="edge" attr.name="geometry" attr.type="string" />
+  <key id="d7" for="node" attr.name="n_corners" attr.type="string" />
+  <key id="d6" for="node" attr.name="type" attr.type="string" />
+  <key id="d5" for="node" attr.name="adj_sorted" attr.type="string" />
+  <key id="d4" for="node" attr.name="angles" attr.type="string" />
+  <key id="d3" for="node" attr.name="bearings" attr.type="string" />
+  <key id="d2" for="node" attr.name="y" attr.type="string" />
+  <key id="d1" for="node" attr.name="x" attr.type="string" />
+  <key id="d0" for="graph" attr.name="crs" attr.type="string" />
+  <graph edgedefault="undirected">
+    <node id="29">
+      <data key="d1">5202245.2761867335</data>
+      <data key="d2">2846668.733811201</data>
+      <data key="d3">{(29, 24, 0): np.float64(113.92516585524768)}</data>
+      <data key="d4">{(29, 24, 0): np.float64(0.0)}</data>
+      <data key="d5">[(29, 24, 0)]</data>
+      <data key="d6">other</data>
+      <data key="d7">1</data>
+    </node>
+    <node id="24">
+      <data key="d1">5201722.16937869</data>
+      <data key="d2">2848678.3071423327</data>
+      <data key="d3">{(24, 29, 0): np.float64(-76.44331700041751), (24, 25, 0): np.float64(17.95099250585768), (24, 21, 0): np.float64(105.73711408209645)}</data>
+      <data key="d4">{(24, 29, 0): np.float64(177.81956891748604), (24, 25, 0): np.float64(94.39430950627519), (24, 21, 0): np.float64(87.78612157623877)}</data>
+      <data key="d5">[(24, 29, 0), (24, 25, 0), (24, 21, 0)]</data>
+      <data key="d6">T</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="25">
+      <data key="d1">5201797.535465188</data>
+      <data key="d2">2848706.4253788693</data>
+      <data key="d3">{(25, 24, 0): np.float64(-158.0210464618631), (25, 21, 0): np.float64(127.83696644168575), (25, 27, 0): np.float64(-39.883331682538234)}</data>
+      <data key="d4">{(25, 24, 0): np.float64(74.14198709645115), (25, 27, 0): np.float64(118.13771477932488), (25, 21, 0): np.float64(167.72029812422397)}</data>
+      <data key="d5">[(25, 24, 0), (25, 27, 0), (25, 21, 0)]</data>
+      <data key="d6">Y</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="21">
+      <data key="d1">5201614.582926285</data>
+      <data key="d2">2848932.8024342866</data>
+      <data key="d3">{(21, 25, 0): np.float64(3.1652358997609866), (21, 24, 0): np.float64(-64.89186042250886), (21, 20, 0): np.float64(114.02138150702261)}</data>
+      <data key="d4">{(21, 24, 0): np.float64(181.08675807046853), (21, 25, 0): np.float64(68.05709632226984), (21, 20, 0): np.float64(110.85614560726162)}</data>
+      <data key="d5">[(21, 24, 0), (21, 25, 0), (21, 20, 0)]</data>
+      <data key="d6">T</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="7">
+      <data key="d1">5201089.448775664</data>
+      <data key="d2">2849105.96730262</data>
+      <data key="d3">{(7, 3, 0): np.float64(105.811444660474), (7, 4, 0): np.float64(-160.64759149823286), (7, 8, 0): np.float64(-74.31823523308815)}</data>
+      <data key="d4">{(7, 4, 0): np.float64(93.54096384129315), (7, 8, 0): np.float64(86.32935626514471), (7, 3, 0): np.float64(180.12967989356213)}</data>
+      <data key="d5">[(7, 4, 0), (7, 8, 0), (7, 3, 0)]</data>
+      <data key="d6">T</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="3">
+      <data key="d1">5200920.3640341535</data>
+      <data key="d2">2849666.0125663346</data>
+      <data key="d3">{(3, 7, 0): np.float64(-99.04054893042749), (3, 13, 0): np.float64(-37.254099334273135), (3, 2, 0): np.float64(132.68262220668086)}</data>
+      <data key="d4">{(3, 7, 0): np.float64(128.27682886289165), (3, 13, 0): np.float64(61.786449596154355), (3, 2, 0): np.float64(169.936721540954)}</data>
+      <data key="d5">[(3, 7, 0), (3, 13, 0), (3, 2, 0)]</data>
+      <data key="d6">Y</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="4">
+      <data key="d1">5200973.7165159825</data>
+      <data key="d2">2848942.1165010324</data>
+      <data key="d3">{(4, 7, 0): np.float64(106.64259937633909), (4, 5, 0): np.float64(-76.74868487835738), (4, 8, 0): np.float64(12.717957376608929)}</data>
+      <data key="d4">{(4, 5, 0): np.float64(176.60871574530353), (4, 8, 0): np.float64(89.4666422549663), (4, 7, 0): np.float64(93.92464199973017)}</data>
+      <data key="d5">[(4, 5, 0), (4, 8, 0), (4, 7, 0)]</data>
+      <data key="d6">T</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="8">
+      <data key="d1">5201127.788755257</data>
+      <data key="d2">2848974.8603861905</data>
+      <data key="d3">{(8, 7, 0): np.float64(113.32003837066217), (8, 4, 0): np.float64(-163.45806511239653), (8, 9, 0): np.float64(17.726334752974967)}</data>
+      <data key="d4">{(8, 4, 0): np.float64(83.22189651694129), (8, 9, 0): np.float64(181.1843998653715), (8, 7, 0): np.float64(95.59370361768721)}</data>
+      <data key="d5">[(8, 4, 0), (8, 9, 0), (8, 7, 0)]</data>
+      <data key="d6">T</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="13">
+      <data key="d1">5201403.553380785</data>
+      <data key="d2">2849745.951347299</data>
+      <data key="d3">{(13, 3, 0): np.float64(149.10912071004452), (13, 17, 0): np.float64(-55.61410326876672), (13, 12, 0): np.float64(72.39819939037973)}</data>
+      <data key="d4">{(13, 17, 0): np.float64(155.27677602118877), (13, 12, 0): np.float64(128.01230265914646), (13, 3, 0): np.float64(76.71092131966479)}</data>
+      <data key="d5">[(13, 17, 0), (13, 12, 0), (13, 3, 0)]</data>
+      <data key="d6">Y</data>
+      <data key="d7">3</data>
+    </node>
+    <node id="2">
+      <data key="d1">5200863.006007973</data>
+      <data key="d2">2849809.7182847033</data>
+      <data key="d3">{(2, 3, 0): np.float64(-49.97630425265899), (2, 1, 0): np.float64(79.88381956523324), (2, 0, 0): np.float64(137.785347100135)}</data>
+      <data key="d4">{(2, 3, 0): np.float64(172.238348647206), (2, 1, 0): np.float64(129.86012381789223), (2, 0, 0): np.float64(57.90152753490176)}</data>
+      <data key="d5">[(2, 3, 0), (2, 1, 0), (2, 0, 0)]</data>
+      <data key="d6">Y</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="17">
+      <data key="d1">5201466.603178993</data>
+      <data key="d2">2849324.0381053877</data>
+      <data key="d3">{(17, 13, 0): np.float64(96.28063353855521), (17, 18, 0): np.float64(-82.61259225849257), (17, 23, 0): np.float64(12.072459531676808)}</data>
+      <data key="d4">{(17, 18, 0): np.float64(181.10677420295224), (17, 23, 0): np.float64(94.68505179016938), (17, 13, 0): np.float64(84.2081740068784)}</data>
+      <data key="d5">[(17, 18, 0), (17, 23, 0), (17, 13, 0)]</data>
+      <data key="d6">T</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="12">
+      <data key="d1">5201370.5728898</data>
+      <data key="d2">2850187.797150882</data>
+      <data key="d3">{(12, 13, 0): np.float64(-85.84461318868517)}</data>
+      <data key="d4">{(12, 13, 0): np.float64(0.0)}</data>
+      <data key="d5">[(12, 13, 0)]</data>
+      <data key="d6">other</data>
+      <data key="d7">1</data>
+    </node>
+    <node id="1">
+      <data key="d1">5200725.366585717</data>
+      <data key="d2">2850288.5037580873</data>
+      <data key="d3">{(1, 2, 0): np.float64(-74.53101743192498)}</data>
+      <data key="d4">{(1, 2, 0): np.float64(0.0)}</data>
+      <data key="d5">[(1, 2, 0)]</data>
+      <data key="d6">other</data>
+      <data key="d7">1</data>
+    </node>
+    <node id="0">
+      <data key="d1">5200280.54034222</data>
+      <data key="d2">2850129.5037247986</data>
+      <data key="d3">{(0, 2, 0): np.float64(-38.344813657879335)}</data>
+      <data key="d4">{(0, 2, 0): np.float64(0.0)}</data>
+      <data key="d5">[(0, 2, 0)]</data>
+      <data key="d6">other</data>
+      <data key="d7">1</data>
+    </node>
+    <node id="5">
+      <data key="d1">5200986.931371775</data>
+      <data key="d2">2848886.000788437</data>
+      <data key="d3">{(5, 4, 0): np.float64(103.25131512164263)}</data>
+      <data key="d4">{(5, 4, 0): np.float64(0.0)}</data>
+      <data key="d5">[(5, 4, 0)]</data>
+      <data key="d6">other</data>
+      <data key="d7">1</data>
+    </node>
+    <node id="9">
+      <data key="d1">5201162.71631829</data>
+      <data key="d2">2848986.0248848023</data>
+      <data key="d3">{(9, 8, 0): np.float64(-162.27366524702506), (9, 10, 0): np.float64(-75.63359110402153), (9, 18, 0): np.float64(19.501942549737354)}</data>
+      <data key="d4">{(9, 8, 0): np.float64(178.22439220323758), (9, 10, 0): np.float64(86.64007414300353), (9, 18, 0): np.float64(95.13553365375888)}</data>
+      <data key="d5">[(9, 8, 0), (9, 10, 0), (9, 18, 0)]</data>
+      <data key="d6">T</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="18">
+      <data key="d1">5201492.8965830915</data>
+      <data key="d2">2849152.0634640884</data>
+      <data key="d3">{(18, 17, 0): np.float64(101.07500123568705), (18, 9, 0): np.float64(-167.183201070197), (18, 19, 0): np.float64(-78.04904535609042)}</data>
+      <data key="d4">{(18, 9, 0): np.float64(91.74179769411597), (18, 19, 0): np.float64(89.13415571410657), (18, 17, 0): np.float64(179.12404659177747)}</data>
+      <data key="d5">[(18, 9, 0), (18, 19, 0), (18, 17, 0)]</data>
+      <data key="d6">T</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="23">
+      <data key="d1">5201712.880804871</data>
+      <data key="d2">2849399.40192627</data>
+      <data key="d3">{(23, 17, 0): np.float64(-161.5177140959089), (23, 26, 0): np.float64(-74.69217628368911), (23, 22, 0): np.float64(105.7638313651619)}</data>
+      <data key="d4">{(23, 17, 0): np.float64(92.71845453892922), (23, 26, 0): np.float64(86.82553781221979), (23, 22, 0): np.float64(180.45600764885103)}</data>
+      <data key="d5">[(23, 17, 0), (23, 26, 0), (23, 22, 0)]</data>
+      <data key="d6">T</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="27">
+      <data key="d1">5201822.015979215</data>
+      <data key="d2">2849057.652903228</data>
+      <data key="d3">{(27, 25, 0): np.float64(-79.39779918579964), (27, 26, 0): np.float64(-165.60521802433527), (27, 28, 0): np.float64(19.258231800130922)}</data>
+      <data key="d4">{(27, 26, 0): np.float64(175.1365501755338), (27, 25, 0): np.float64(86.20741883853563), (27, 28, 0): np.float64(98.65603098593056)}</data>
+      <data key="d5">[(27, 26, 0), (27, 25, 0), (27, 28, 0)]</data>
+      <data key="d6">T</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="20">
+      <data key="d1">5201589.201579863</data>
+      <data key="d2">2848981.7370152636</data>
+      <data key="d3">{(20, 21, 0): np.float64(-57.85012486347731), (20, 19, 0): np.float64(126.82043974956278), (20, 26, 0): np.float64(21.436766619564725)}</data>
+      <data key="d4">{(20, 21, 0): np.float64(175.32943538695991), (20, 26, 0): np.float64(79.28689148304204), (20, 19, 0): np.float64(105.38367312999806)}</data>
+      <data key="d5">[(20, 21, 0), (20, 26, 0), (20, 19, 0)]</data>
+      <data key="d6">T</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="26">
+      <data key="d1">5201805.788958234</data>
+      <data key="d2">2849053.488087591</data>
+      <data key="d3">{(26, 23, 0): np.float64(92.67579479011373), (26, 27, 0): np.float64(14.394781975664747), (26, 20, 0): np.float64(-162.32970236345545)}</data>
+      <data key="d4">{(26, 20, 0): np.float64(104.9945028464308), (26, 27, 0): np.float64(176.7244843391202), (26, 23, 0): np.float64(78.28101281444899)}</data>
+      <data key="d5">[(26, 20, 0), (26, 27, 0), (26, 23, 0)]</data>
+      <data key="d6">T</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="28">
+      <data key="d1">5201853.2775321165</data>
+      <data key="d2">2849068.574965624</data>
+      <data key="d3">{(28, 27, 0): np.float64(-160.74176819986909)}</data>
+      <data key="d4">{(28, 27, 0): np.float64(0.0)}</data>
+      <data key="d5">[(28, 27, 0)]</data>
+      <data key="d6">other</data>
+      <data key="d7">1</data>
+    </node>
+    <node id="19">
+      <data key="d1">5201530.453267335</data>
+      <data key="d2">2849051.480500973</data>
+      <data key="d3">{(19, 18, 0): np.float64(126.9507349107734), (19, 20, 0): np.float64(-51.20172596328943), (19, 15, 0): np.float64(-91.89989866043369)}</data>
+      <data key="d4">{(19, 15, 0): np.float64(141.14936642879292), (19, 20, 0): np.float64(40.698172697144265), (19, 18, 0): np.float64(178.15246087406283)}</data>
+      <data key="d5">[(19, 15, 0), (19, 20, 0), (19, 18, 0)]</data>
+      <data key="d6">Y</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="22">
+      <data key="d1">5201659.6774682375</data>
+      <data key="d2">2849597.1504325652</data>
+      <data key="d3">{(22, 23, 0): np.float64(-75.2600632124)}</data>
+      <data key="d4">{(22, 23, 0): np.float64(0.0)}</data>
+      <data key="d5">[(22, 23, 0)]</data>
+      <data key="d6">other</data>
+      <data key="d7">1</data>
+    </node>
+    <node id="11">
+      <data key="d1">5201238.557982881</data>
+      <data key="d2">2848711.1647662586</data>
+      <data key="d3">{(11, 6, 0): np.float64(-163.25394651816273), (11, 10, 0): np.float64(107.65754257641044), (11, 14, 0): np.float64(8.360174309171574)}</data>
+      <data key="d4">{(11, 6, 0): np.float64(89.0885109054268), (11, 14, 0): np.float64(171.61412082733432), (11, 10, 0): np.float64(99.29736826723887)}</data>
+      <data key="d5">[(11, 6, 0), (11, 14, 0), (11, 10, 0)]</data>
+      <data key="d6">T</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="6">
+      <data key="d1">5201008.4361719545</data>
+      <data key="d2">2848639.7428975347</data>
+      <data key="d3">{(6, 11, 0): np.float64(17.2190015013929)}</data>
+      <data key="d4">{(6, 11, 0): np.float64(0.0)}</data>
+      <data key="d5">[(6, 11, 0)]</data>
+      <data key="d6">other</data>
+      <data key="d7">1</data>
+    </node>
+    <node id="10">
+      <data key="d1">5201210.811176348</data>
+      <data key="d2">2848798.3299535387</data>
+      <data key="d3">{(10, 9, 0): np.float64(104.38040650965971), (10, 11, 0): np.float64(-72.34245742358958), (10, 15, 0): np.float64(16.542009494462015)}</data>
+      <data key="d4">{(10, 11, 0): np.float64(183.2771360667507), (10, 15, 0): np.float64(88.8844669180516), (10, 9, 0): np.float64(87.8383970151977)}</data>
+      <data key="d5">[(10, 11, 0), (10, 15, 0), (10, 9, 0)]</data>
+      <data key="d6">T</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="14">
+      <data key="d1">5201438.0480039045</data>
+      <data key="d2">2848739.133439146</data>
+      <data key="d3">{(14, 11, 0): np.float64(-175.9787905084724), (14, 15, 0): np.float64(88.80377282305028), (14, 16, 0): np.float64(-83.53057676958306)}</data>
+      <data key="d4">{(14, 11, 0): np.float64(95.21743666847732), (14, 16, 0): np.float64(92.44821373888934), (14, 15, 0): np.float64(172.33434959263334)}</data>
+      <data key="d5">[(14, 11, 0), (14, 16, 0), (14, 15, 0)]</data>
+      <data key="d6">T</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="15">
+      <data key="d1">5201441.940507341</data>
+      <data key="d2">2848860.3710304443</data>
+      <data key="d3">{(15, 19, 0): np.float64(86.97495690869741), (15, 10, 0): np.float64(-166.10234761566926), (15, 14, 0): np.float64(-90.64352781780036)}</data>
+      <data key="d4">{(15, 10, 0): np.float64(106.92269547563333), (15, 14, 0): np.float64(75.4588197978689), (15, 19, 0): np.float64(177.61848472649777)}</data>
+      <data key="d5">[(15, 10, 0), (15, 14, 0), (15, 19, 0)]</data>
+      <data key="d6">T</data>
+      <data key="d7">2</data>
+    </node>
+    <node id="16">
+      <data key="d1">5201449.603058881</data>
+      <data key="d2">2848630.573786133</data>
+      <data key="d3">{(16, 14, 0): np.float64(93.36328264586638)}</data>
+      <data key="d4">{(16, 14, 0): np.float64(0.0)}</data>
+      <data key="d5">[(16, 14, 0)]</data>
+      <data key="d6">other</data>
+      <data key="d7">1</data>
+    </node>
+    <edge source="29" target="24" id="0">
+      <data key="d8">LINESTRING (5202245.2761867335 2846668.733811201, 5202237.569646668 2846686.1040055486, 5202232.857917182 2846702.3937172676, 5202211.107479781 2846823.507215229, 5202205.693643275 2846863.3613645826, 5202201.795848665 2846900.721065968, 5202194.5936883325 2846975.830411113, 5202191.32164059 2846985.0557420105, 5202195.349394699 2846989.592137678, 5202195.468749859 2847006.4766229833, 5202195.06954859 2847018.110000109, 5202194.487562611 2847024.321313442, 5202192.258391578 2847034.8106862614, 5202183.680830527 2847067.708365207, 5202174.580993301 2847102.720810895, 5202168.433686517 2847127.384214508, 5202154.732690834 2847179.798672672, 5202154.036901501 2847183.2501837737, 5202147.67139253 2847207.054562263, 5202140.747360099 2847234.91941451, 5202133.816654089 2847260.5382692437, 5202066.670916311 2847523.4526532474, 5202003.477041102 2847770.8902328573, 5201874.693866101 2848275.2811725806, 5201856.972148996 2848341.909799368, 5201841.97488669 2848386.4763545385, 5201824.3265548255 2848422.6131342473, 5201794.916309329 2848475.257163197, 5201767.862208285 2848522.3284430252, 5201755.137558493 2848549.745653439, 5201744.145081098 2848587.169052393, 5201722.16937869 2848678.3071423327)</data>
+      <data key="d9">0</data>
+      <data key="d10">secondary</data>
+      <data key="d11">['Petőfi Sándor utca', 'Ady Endre utca']</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">2087.8340945313553</data>
+      <data key="d15">29</data>
+      <data key="d16">24</data>
+      <data key="d17">2</data>
+      <data key="d18">90</data>
+      <data key="d19">3827</data>
+      <data key="d20">yes</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="24" target="25" id="0">
+      <data key="d8">LINESTRING (5201797.535465188 2848706.4253788693, 5201771.442139653 2848695.8941388484, 5201731.057199233 2848681.1865679114, 5201722.16937869 2848678.3071423327)</data>
+      <data key="d9">1</data>
+      <data key="d10">residential</data>
+      <data key="d12">False</data>
+      <data key="d13">True</data>
+      <data key="d14">80.46071528632729</data>
+      <data key="d15">25</data>
+      <data key="d16">24</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="24" target="21" id="0">
+      <data key="d8">LINESTRING (5201614.582926285 2848932.8024342866, 5201655.585949671 2848845.3027134165, 5201659.207419479 2848837.578090614, 5201674.629142077 2848805.1397912614, 5201679.0372484885 2848795.1516467994, 5201687.988461189 2848774.8927504364, 5201700.38761371 2848746.959971824, 5201709.425095696 2848723.533893166, 5201722.16937869 2848678.3071423327)</data>
+      <data key="d9">2</data>
+      <data key="d10">secondary</data>
+      <data key="d11">Petőfi Sándor utca</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">276.8033990732626</data>
+      <data key="d15">21</data>
+      <data key="d16">24</data>
+      <data key="d17">2</data>
+      <data key="d18">50</data>
+      <data key="d19">3826</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="25" target="21" id="0">
+      <data key="d8">LINESTRING (5201797.535465188 2848706.4253788693, 5201768.07016357 2848744.3612523307, 5201737.873970094 2848790.5487601873, 5201707.804582005 2848838.223535916, 5201674.739052051 2848880.514750754, 5201636.378614633 2848927.449363679, 5201631.535028255 2848931.568209652, 5201627.284525339 2848933.504833423, 5201614.582926285 2848932.8024342866)</data>
+      <data key="d9">17</data>
+      <data key="d10">residential</data>
+      <data key="d11">Arany János utca</data>
+      <data key="d12">True</data>
+      <data key="d13">False</data>
+      <data key="d14">297.63222504088117</data>
+      <data key="d15">25</data>
+      <data key="d16">21</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="25" target="27" id="0">
+      <data key="d8">LINESTRING (5201822.015979215 2849057.652903228, 5201839.335773663 2848965.1250566626, 5201842.652936765 2848943.7459934526, 5201847.877702631 2848925.159341998, 5201855.017581682 2848905.9820049154, 5201875.851403044 2848854.4464205713, 5201887.448316566 2848825.1649278444, 5201897.120536425 2848808.114636331, 5201932.971124519 2848750.495615059, 5201939.11598618 2848739.572008815, 5201962.993978592 2848697.1735440306, 5201965.177891961 2848691.832184349, 5201966.9886084255 2848682.9442040306, 5201974.351348323 2848637.9131305064, 5201982.618042692 2848596.3571695713, 5201961.181085986 2848589.945000089, 5201948.809933264 2848586.8590652626, 5201942.446685179 2848586.9172958285, 5201935.559359854 2848591.007795604, 5201921.3972419705 2848605.8830874986, 5201876.318715177 2848642.0437047137, 5201828.550597663 2848680.5080299773, 5201797.535465188 2848706.4253788693)</data>
+      <data key="d9">18</data>
+      <data key="d10">residential</data>
+      <data key="d11">['Rákóczi út', 'Arany János utca']</data>
+      <data key="d12">False</data>
+      <data key="d13">True</data>
+      <data key="d14">723.6959923296407</data>
+      <data key="d15">27</data>
+      <data key="d16">25</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="21" target="20" id="0">
+      <data key="d8">LINESTRING (5201589.201579863 2848981.7370152636, 5201598.3610762935 2848967.1637229975, 5201604.893612631 2848954.543150798, 5201614.582926285 2848932.8024342866)</data>
+      <data key="d9">19</data>
+      <data key="d10">secondary</data>
+      <data key="d11">Petőfi Sándor utca</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">55.22585104812512</data>
+      <data key="d15">20</data>
+      <data key="d16">21</data>
+      <data key="d17">2</data>
+      <data key="d18">50</data>
+      <data key="d19">3826</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="7" target="3" id="0">
+      <data key="d8">LINESTRING (5201089.448775664 2849105.96730262, 5201070.502391421 2849172.8713935744, 5201047.37060328 2849246.167738055, 5200992.733449353 2849420.0629935064, 5200965.81007808 2849509.945961845, 5200934.044209579 2849607.7162391953, 5200918.795999917 2849656.157532966, 5200920.3640341535 2849666.0125663346)</data>
+      <data key="d9">3</data>
+      <data key="d10">residential</data>
+      <data key="d11">Jókai Mór utca</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">586.0649500347739</data>
+      <data key="d15">7</data>
+      <data key="d16">3</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="7" target="4" id="0">
+      <data key="d8">LINESTRING (5200973.7165159825 2848942.1165010324, 5200943.273214219 2849043.9598923936, 5200939.621061406 2849055.176835832, 5200984.991710452 2849069.279659699, 5201089.448775664 2849105.96730262)</data>
+      <data key="d9">4</data>
+      <data key="d10">residential</data>
+      <data key="d11">Temető utca</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">276.3171425148666</data>
+      <data key="d15">4</data>
+      <data key="d16">7</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="7" target="8" id="0">
+      <data key="d8">LINESTRING (5201127.788755257 2848974.8603861905, 5201123.394431202 2848985.0540775764, 5201089.448775664 2849105.96730262)</data>
+      <data key="d9">5</data>
+      <data key="d10">residential</data>
+      <data key="d11">Jókai Mór utca</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">136.68839443280015</data>
+      <data key="d15">8</data>
+      <data key="d16">7</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="3" target="13" id="0">
+      <data key="d8">LINESTRING (5201403.553380785 2849745.951347299, 5201397.327542383 2849749.676088786, 5201390.041776429 2849751.581304043, 5201375.279129969 2849749.596068217, 5200955.948587869 2849661.2082448592, 5200945.41699301 2849659.7883982197, 5200936.434717844 2849659.5681811357, 5200929.903751841 2849660.4122853028, 5200924.127593744 2849663.1502641244, 5200920.3640341535 2849666.0125663346)</data>
+      <data key="d9">6</data>
+      <data key="d10">secondary</data>
+      <data key="d11">Kölcsey Ferenc utca</data>
+      <data key="d12">False</data>
+      <data key="d13">True</data>
+      <data key="d14">495.543606447567</data>
+      <data key="d15">13</data>
+      <data key="d16">3</data>
+      <data key="d17">2</data>
+      <data key="d18">50</data>
+      <data key="d19">3826</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="3" target="2" id="0">
+      <data key="d8">LINESTRING (5200863.006007973 2849809.7182847033, 5200870.040835764 2849801.341541459, 5200873.585865399 2849793.807261984, 5200878.0991731435 2849783.238011401, 5200911.84438554 2849678.502151099, 5200915.63282758 2849671.1428469983, 5200920.3640341535 2849666.0125663346)</data>
+      <data key="d9">7</data>
+      <data key="d10">secondary</data>
+      <data key="d11">Jókai Mór utca</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">156.0519518205145</data>
+      <data key="d15">2</data>
+      <data key="d16">3</data>
+      <data key="d17">2</data>
+      <data key="d18">50</data>
+      <data key="d19">3826</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="4" target="5" id="0">
+      <data key="d8">LINESTRING (5200973.7165159825 2848942.1165010324, 5200986.931371775 2848886.000788437)</data>
+      <data key="d9">12</data>
+      <data key="d10">residential</data>
+      <data key="d11">Temető utca</data>
+      <data key="d12">False</data>
+      <data key="d13">True</data>
+      <data key="d14">57.65072084277841</data>
+      <data key="d15">4</data>
+      <data key="d16">5</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="4" target="8" id="0">
+      <data key="d8">LINESTRING (5201127.788755257 2848974.8603861905, 5201094.36697502 2848964.9337903126, 5201023.107713467 2848953.2635553996, 5200973.7165159825 2848942.1165010324)</data>
+      <data key="d9">13</data>
+      <data key="d10">residential</data>
+      <data key="d11">Alkotmány utca</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">157.70680091920502</data>
+      <data key="d15">8</data>
+      <data key="d16">4</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="8" target="9" id="0">
+      <data key="d8">LINESTRING (5201127.788755257 2848974.8603861905, 5201162.71631829 2848986.0248848023)</data>
+      <data key="d9">14</data>
+      <data key="d10">residential</data>
+      <data key="d11">Alkotmány utca</data>
+      <data key="d12">False</data>
+      <data key="d13">True</data>
+      <data key="d14">36.66852449556915</data>
+      <data key="d15">8</data>
+      <data key="d16">9</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="13" target="17" id="0">
+      <data key="d8">LINESTRING (5201466.603178993 2849324.0381053877, 5201452.8617618 2849448.8932117024, 5201451.662685333 2849495.615697076, 5201452.421991287 2849527.5065607494, 5201450.1637349855 2849558.5340343774, 5201446.591511555 2849589.7312108628, 5201439.243770349 2849625.6272526546, 5201410.7596575925 2849731.4436068786, 5201408.318664006 2849738.988150508, 5201403.553380785 2849745.951347299)</data>
+      <data key="d9">8</data>
+      <data key="d10">secondary</data>
+      <data key="d11">Kölcsey Ferenc utca</data>
+      <data key="d12">False</data>
+      <data key="d13">True</data>
+      <data key="d14">429.3480173073091</data>
+      <data key="d15">17</data>
+      <data key="d16">13</data>
+      <data key="d17">2</data>
+      <data key="d18">50</data>
+      <data key="d19">3826</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="13" target="12" id="0">
+      <data key="d8">LINESTRING (5201370.5728898 2850187.797150882, 5201374.16937232 2850138.2946951035, 5201385.421716305 2850031.455923432, 5201393.362906655 2849941.766939899, 5201398.1325772405 2849880.3058488895, 5201399.76319878 2849859.3065265706, 5201407.417746435 2849758.132043154, 5201403.553380785 2849745.951347299)</data>
+      <data key="d9">9</data>
+      <data key="d10">unclassified</data>
+      <data key="d11">Dózsa utca</data>
+      <data key="d12">False</data>
+      <data key="d13">True</data>
+      <data key="d14">444.0535284893517</data>
+      <data key="d15">12</data>
+      <data key="d16">13</data>
+      <data key="d18">50</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="2" target="1" id="0">
+      <data key="d8">LINESTRING (5200725.366585717 2850288.5037580873, 5200727.415945607 2850281.0984399356, 5200862.830829855 2849835.0039371178, 5200864.158399183 2849827.165373824, 5200865.018757343 2849820.999341825, 5200863.006007973 2849809.7182847033)</data>
+      <data key="d9">10</data>
+      <data key="d10">residential</data>
+      <data key="d11">Hunyadi utca</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">499.5135189941875</data>
+      <data key="d15">1</data>
+      <data key="d16">2</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="2" target="0" id="0">
+      <data key="d8">LINESTRING (5200280.54034222 2850129.5037247986, 5200294.866146054 2850118.1716819685, 5200320.5972630065 2850100.4250562615, 5200490.5584781 2850010.309678895, 5200594.271473985 2849956.2067318624, 5200656.423510145 2849923.7740230467, 5200659.617779264 2849922.0373321744, 5200830.598835281 2849831.9271844253, 5200846.3924673125 2849823.18140922, 5200856.531912787 2849815.591653427, 5200863.006007973 2849809.7182847033)</data>
+      <data key="d9">11</data>
+      <data key="d10">secondary</data>
+      <data key="d11">Jókai Mór utca</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">665.347705174367</data>
+      <data key="d15">0</data>
+      <data key="d16">2</data>
+      <data key="d17">2</data>
+      <data key="d18">['90', '50']</data>
+      <data key="d19">3826</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="17" target="18" id="0">
+      <data key="d8">LINESTRING (5201466.603178993 2849324.0381053877, 5201475.92378261 2849252.1497359443, 5201489.8963660505 2849167.3910942036, 5201492.8965830915 2849152.0634640884)</data>
+      <data key="d9">15</data>
+      <data key="d10">secondary</data>
+      <data key="d11">Kölcsey Ferenc utca</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">174.01119933429567</data>
+      <data key="d15">17</data>
+      <data key="d16">18</data>
+      <data key="d17">2</data>
+      <data key="d19">3826</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="17" target="23" id="0">
+      <data key="d8">LINESTRING (5201466.603178993 2849324.0381053877, 5201497.054093557 2849330.5509077976, 5201536.458269413 2849341.2850084924, 5201635.1117943935 2849373.407512187, 5201712.880804871 2849399.40192627)</data>
+      <data key="d9">16</data>
+      <data key="d10">residential</data>
+      <data key="d11">Rákóczi út</data>
+      <data key="d12">False</data>
+      <data key="d13">True</data>
+      <data key="d14">257.72949779388216</data>
+      <data key="d15">17</data>
+      <data key="d16">23</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="9" target="10" id="0">
+      <data key="d8">LINESTRING (5201162.71631829 2848986.0248848023, 5201190.850918388 2848876.1805397645, 5201210.811176348 2848798.3299535387)</data>
+      <data key="d9">30</data>
+      <data key="d10">residential</data>
+      <data key="d11">Móricz Zsigmond utca</data>
+      <data key="d12">False</data>
+      <data key="d13">True</data>
+      <data key="d14">193.75887886118502</data>
+      <data key="d15">9</data>
+      <data key="d16">10</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="9" target="18" id="0">
+      <data key="d8">LINESTRING (5201492.8965830915 2849152.0634640884, 5201434.36464963 2849138.7472866825, 5201420.228573901 2849134.833636758, 5201408.906178706 2849131.073323012, 5201398.867367668 2849126.382541854, 5201292.604386054 2849063.04263098, 5201281.076269365 2849054.195317186, 5201249.792891122 2849024.2423337414, 5201239.851688683 2849016.070720389, 5201234.133493265 2849012.7149953023, 5201215.977868315 2849004.88782111, 5201162.71631829 2848986.0248848023)</data>
+      <data key="d9">33</data>
+      <data key="d10">residential</data>
+      <data key="d11">Alkotmány utca</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">375.03047692466765</data>
+      <data key="d15">18</data>
+      <data key="d16">9</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="18" target="19" id="0">
+      <data key="d8">LINESTRING (5201492.8965830915 2849152.0634640884, 5201500.546083966 2849115.923301076, 5201507.3656229675 2849093.952331208, 5201515.7325077355 2849075.053440213, 5201522.840263205 2849061.6013930147, 5201530.453267335 2849051.480500973)</data>
+      <data key="d9">35</data>
+      <data key="d10">secondary</data>
+      <data key="d11">Kölcsey Ferenc utca</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">108.49292137847515</data>
+      <data key="d15">18</data>
+      <data key="d16">19</data>
+      <data key="d17">2</data>
+      <data key="d18">40</data>
+      <data key="d19">3826</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="23" target="26" id="0">
+      <data key="d8">LINESTRING (5201712.880804871 2849399.40192627, 5201721.8170452975 2849366.754048971, 5201731.566430279 2849332.151559616, 5201744.753694575 2849285.9364890163, 5201754.36345891 2849262.5585206174, 5201792.405164036 2849170.5162587794, 5201796.072927964 2849159.2118561063, 5201800.358901063 2849144.804276572, 5201802.148746621 2849131.3778830077, 5201805.788958234 2849053.488087591)</data>
+      <data key="d9">24</data>
+      <data key="d10">residential</data>
+      <data key="d11">Rákóczi út</data>
+      <data key="d12">False</data>
+      <data key="d13">True</data>
+      <data key="d14">361.1642422573082</data>
+      <data key="d15">23</data>
+      <data key="d16">26</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="23" target="22" id="0">
+      <data key="d8">LINESTRING (5201659.6774682375 2849597.1504325652, 5201695.566089183 2849460.738596206, 5201712.880804871 2849399.40192627)</data>
+      <data key="d9">25</data>
+      <data key="d10">residential</data>
+      <data key="d11">Rákóczi út</data>
+      <data key="d12">False</data>
+      <data key="d13">True</data>
+      <data key="d14">204.78754259683072</data>
+      <data key="d15">22</data>
+      <data key="d16">23</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="27" target="26" id="0">
+      <data key="d8">LINESTRING (5201805.788958234 2849053.488087591, 5201822.015979215 2849057.652903228)</data>
+      <data key="d9">20</data>
+      <data key="d10">residential</data>
+      <data key="d11">Rákóczi út</data>
+      <data key="d12">False</data>
+      <data key="d13">True</data>
+      <data key="d14">16.752966877647804</data>
+      <data key="d15">26</data>
+      <data key="d16">27</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="27" target="28" id="0">
+      <data key="d8">LINESTRING (5201853.2775321165 2849068.574965624, 5201822.015979215 2849057.652903228)</data>
+      <data key="d9">21</data>
+      <data key="d10">residential</data>
+      <data key="d11">Rákóczi út</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">33.114590995879595</data>
+      <data key="d15">28</data>
+      <data key="d16">27</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="20" target="19" id="0">
+      <data key="d8">LINESTRING (5201589.201579863 2848981.7370152636, 5201580.099981423 2848993.894328693, 5201568.728062674 2849007.080975692, 5201560.447955685 2849016.1343745734, 5201545.114076083 2849033.245007531, 5201530.453267335 2849051.480500973)</data>
+      <data key="d9">22</data>
+      <data key="d10">secondary</data>
+      <data key="d11">Petőfi Sándor utca</data>
+      <data key="d12">False</data>
+      <data key="d13">True</data>
+      <data key="d14">91.24276127082226</data>
+      <data key="d15">20</data>
+      <data key="d16">19</data>
+      <data key="d17">2</data>
+      <data key="d18">['40', '50']</data>
+      <data key="d19">3826</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="20" target="26" id="0">
+      <data key="d8">LINESTRING (5201805.788958234 2849053.488087591, 5201752.486750397 2849036.5076245656, 5201670.353721455 2849009.893524618, 5201611.628960166 2848990.5428155884, 5201589.201579863 2848981.7370152636)</data>
+      <data key="d9">23</data>
+      <data key="d10">residential</data>
+      <data key="d11">Rákóczi út</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">228.20395655765574</data>
+      <data key="d15">26</data>
+      <data key="d16">20</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="19" target="15" id="0">
+      <data key="d8">LINESTRING (5201530.453267335 2849051.480500973, 5201528.801576099 2849001.6882404936, 5201526.553097854 2848996.573011461, 5201522.032208545 2848991.403814816, 5201511.563726566 2848982.6156352693, 5201471.833485213 2848962.488544022, 5201463.400036715 2848958.927588967, 5201458.363462711 2848954.3062731214, 5201454.283155197 2848947.347497566, 5201449.905097218 2848936.696533615, 5201445.074004049 2848919.665817307, 5201441.940507341 2848860.3710304443)</data>
+      <data key="d9">34</data>
+      <data key="d10">residential</data>
+      <data key="d11">Kossuth Lajos utca</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">233.13284236033368</data>
+      <data key="d15">19</data>
+      <data key="d16">15</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="11" target="6" id="0">
+      <data key="d8">LINESTRING (5201238.557982881 2848711.1647662586, 5201212.764881402 2848703.4038613373, 5201107.407253662 2848670.41553655, 5201008.4361719545 2848639.7428975347)</data>
+      <data key="d9">26</data>
+      <data key="d10">residential</data>
+      <data key="d11">Móricz Zsigmond utca</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">240.95183947938023</data>
+      <data key="d15">11</data>
+      <data key="d16">6</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="11" target="10" id="0">
+      <data key="d8">LINESTRING (5201210.811176348 2848798.3299535387, 5201238.557982881 2848711.1647662586)</data>
+      <data key="d9">27</data>
+      <data key="d10">residential</data>
+      <data key="d11">Móricz Zsigmond utca</data>
+      <data key="d12">False</data>
+      <data key="d13">True</data>
+      <data key="d14">91.47488806426172</data>
+      <data key="d15">10</data>
+      <data key="d16">11</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="11" target="14" id="0">
+      <data key="d8">LINESTRING (5201438.0480039045 2848739.133439146, 5201431.213072446 2848738.6529516177, 5201391.733906013 2848732.03708324, 5201344.473173283 2848725.024008867, 5201272.254789527 2848716.1167471693, 5201238.557982881 2848711.1647662586)</data>
+      <data key="d9">28</data>
+      <data key="d10">residential</data>
+      <data key="d11">Móricz Zsigmond utca</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">201.4840445991042</data>
+      <data key="d15">14</data>
+      <data key="d16">11</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="10" target="15" id="0">
+      <data key="d8">LINESTRING (5201210.811176348 2848798.3299535387, 5201298.157565514 2848824.272809877, 5201392.131817319 2848848.0467916555, 5201441.940507341 2848860.3710304443)</data>
+      <data key="d9">29</data>
+      <data key="d10">residential</data>
+      <data key="d11">Kinizsi Pál utca</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">239.363214485645</data>
+      <data key="d15">10</data>
+      <data key="d16">15</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="14" target="15" id="0">
+      <data key="d8">LINESTRING (5201441.940507341 2848860.3710304443, 5201441.632548611 2848832.953422281, 5201439.989048559 2848805.984064884, 5201438.6793245645 2848769.367456686, 5201438.0480039045 2848739.133439146)</data>
+      <data key="d9">32</data>
+      <data key="d10">residential</data>
+      <data key="d11">Kossuth Lajos utca</data>
+      <data key="d12">False</data>
+      <data key="d13">False</data>
+      <data key="d14">121.31935804386924</data>
+      <data key="d15">15</data>
+      <data key="d16">14</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <edge source="14" target="16" id="0">
+      <data key="d8">LINESTRING (5201449.603058881 2848630.573786133, 5201448.790752958 2848644.396065425, 5201438.0480039045 2848739.133439146)</data>
+      <data key="d9">31</data>
+      <data key="d10">residential</data>
+      <data key="d11">Kossuth Lajos utca</data>
+      <data key="d12">False</data>
+      <data key="d13">True</data>
+      <data key="d14">109.19064296806118</data>
+      <data key="d15">16</data>
+      <data key="d16">14</data>
+      <data key="d21">original</data>
+      <data key="d22">0</data>
+    </edge>
+    <data key="d0">EPSG:3035</data>
+  </graph>
+</graphml>

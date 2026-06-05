@@ -1,0 +1,42 @@
+ERROR in Szigetmonostor:
+[Errno 2] No such file or directory: 'output/20251203_184441/Szigetmonostor/Szigetmonostor_osm.graphml'
+Traceback (most recent call last):
+  File "/home/adam/git_repos/utca/save_neat_graphs.py", line 50, in <module>
+    process_town(town_path, output_root)
+  File "/home/adam/git_repos/utca/save_neat_graphs.py", line 14, in process_town
+    G = ox.load_graphml(path)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adam/miniconda3/envs/utca2/lib/python3.12/site-packages/osmnx/io.py", line 217, in load_graphml
+    G = nx.read_graphml(
+        ^^^^^^^^^^^^^^^^
+  File "<class 'networkx.utils.decorators.argmap'> compilation 6", line 3, in argmap_read_graphml_1
+    import gzip
+                
+  File "/home/adam/miniconda3/envs/utca2/lib/python3.12/site-packages/networkx/utils/decorators.py", line 194, in _open_file
+    fobj = _dispatch_dict[ext](path, mode=mode)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'output/20251203_184441/Szigetmonostor/Szigetmonostor_osm.graphml'
+
+------------------------------------------
+ERROR in Gyöngyössolymos:
+`dataset` input should have multiple elements.
+Traceback (most recent call last):
+  File "/home/adam/git_repos/utca/save_neat_graphs.py", line 50, in <module>
+    process_town(town_path, output_root)
+  File "/home/adam/git_repos/utca/save_neat_graphs.py", line 17, in process_town
+    neat = neatnet.neatify(streets)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adam/miniconda3/envs/utca2/lib/python3.12/site-packages/neatnet/simplify.py", line 939, in neatify
+    artifacts, _ = get_artifacts(
+                   ^^^^^^^^^^^^^^
+  File "/home/adam/miniconda3/envs/utca2/lib/python3.12/site-packages/neatnet/artifacts.py", line 323, in get_artifacts
+    fas = FaceArtifacts(streets)
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/adam/miniconda3/envs/utca2/lib/python3.12/site-packages/neatnet/artifacts.py", line 155, in __init__
+    self.kde = gaussian_kde(
+               ^^^^^^^^^^^^^
+  File "/home/adam/miniconda3/envs/utca2/lib/python3.12/site-packages/scipy/stats/_kde.py", line 211, in __init__
+    raise ValueError("`dataset` input should have multiple elements.")
+ValueError: `dataset` input should have multiple elements.
+
+------------------------------------------
