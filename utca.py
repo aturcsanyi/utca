@@ -381,6 +381,9 @@ def explore_graph(
     node_column_to_plot=None,
     edge_column_to_plot=None,
     poly_column_to_plot=None,
+    node_cmap=None,
+    edge_cmap=None,
+    poly_cmap=None,
 ):
     nodes, edges = ox.convert.graph_to_gdfs(G)
     if edge_column_to_plot == "date":  # for correct coloring by date
@@ -394,6 +397,7 @@ def explore_graph(
             highlight_kwds={"color": "red"},
             popup=True,
             style_kwds={"stroke=": False, "opacity": 0.2},
+            cmap=poly_cmap,
         )
     else:
         m = None
@@ -406,6 +410,7 @@ def explore_graph(
         popup=True,
         style_kwds={"opacity": 0.6, "weight": 5},
         missing_kwds={"color": "grey"},
+        cmap=edge_cmap,
     )
     nodes.explore(
         name="Nodes",
@@ -415,6 +420,7 @@ def explore_graph(
         highlight_kwds={"color": "red"},
         popup=True,
         marker_kwds={"radius": 6},
+        cmap=node_cmap,
     )
     folium.LayerControl(collapsed=False).add_to(m)
     return m
