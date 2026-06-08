@@ -136,13 +136,13 @@ def join_historical_streets(
     return joined
 
 
-def basic_visu(gdf: gpd.GeoDataFrame, m=None, column=None):
+def basic_visu(gdf: gpd.GeoDataFrame, m=None, column=None, cmap="viridis"):
     return gdf.explore(
         column=column,
         m=m,
         highlight_kwds={"color": "red"},
         tiles="CartoDB positron",
-        cmap="viridis",
+        cmap=cmap,
         popup=6,
         tooltip=6,
         missing_kwds={"color": "grey"},
