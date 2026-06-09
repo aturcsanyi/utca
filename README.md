@@ -7,11 +7,13 @@ Tools and notebooks for analyzing city street networks in the framework of mosai
 
 The main aim of the thesis was to apply the theory of convex mosaics to street networks.
 A mosaic is made up of nodes, edges, and cells; the key metrics in this theory are the corner degrees of nodes (number of sharp corners at the node) and cells (number of vertices of the cell).
+In our case the nodes are intersections, edges are streets, and cells are city blocks.
 The theory has found success in describing crack networks in rocks and their evolution, see the article [Plato’s cube and the natural geometry of fragmentation](https://doi.org/10.1073/pnas.2001037117)
 
 ## Repository contents
 
 * `utca.py`: main utilities module for analyzing street networks
+* `utcaenv.yml`: file describing the python libraries needed to use the code in this repository (e.g. for a conda environment, `conda create --file utcaenv.yml`)
 * `/dash_app/`: folder containing an interactive visualization app, complete with data
 * `/data/`: folder containing key input data files
 * `/output/`: folder containing saved street networks for convenience (they can also be generated using the scripts below)
@@ -31,9 +33,9 @@ Notebooks
 
 Utility scripts
 
-* `calculate_all_graph_stats.py`: calculate the mosaic metrics for all Hungarian towns
-* `calculate_elevation_stdev.py`: calculate the standard deviation of the elevation of all nodes for every Hungarian town
+* `save_osm_graphs.py`: script to save locally the street graphs of Hungarian towns from OpenStreetMap
+* `save_neat_graphs.py`: script to simplify the street graphs of Hungarian towns with neatnet
 * `save_bp_districts.py`: simplify and save the street network of the districts of Budapest
 * `save_bp_simplified.py`: save the street network of Budapest after applying artefact removal
-* `save_neat_graphs.py`: script to simplify the street graphs of Hungarian towns with neatnet
-* `save_osm_graphs.py`: script to save locally the street graphs of Hungarian towns from OpenStreetMap
+* `calculate_all_graph_stats.py`: calculate the mosaic metrics for all Hungarian towns
+* `calculate_elevation_stdev.py`: calculate the standard deviation of the elevation of all nodes for every Hungarian town
